@@ -13,9 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class LoginCheck
- */
 public class LoginChecking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
@@ -38,7 +35,7 @@ public class LoginChecking extends HttpServlet {
 		try {
 			newConn = new LoginConnection();
 			if (newConn.searchUsers(uname, password)) {
-				response.sendRedirect("LoginSuccess.jsp");
+				response.sendRedirect("Entry.jsp");
 			}
 		
 			else {
@@ -46,7 +43,7 @@ public class LoginChecking extends HttpServlet {
 					boolean result = newConn.searchUsers(uname, password);
 				
 					if (result == true) {
-						response.sendRedirect("LoginSuccess.jsp");
+						response.sendRedirect("Entry.jsp");
 					}
 					else {
 						response.sendRedirect("LoginFail.jsp");

@@ -22,6 +22,12 @@
   	<description></description>
   	<servlet-class>dbAccess.LoginChecking</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CarCheck</servlet-name>
+  	<display-name>CarCheck</display-name>
+  	<description></description>
+  	<servlet-class>dbAccess.CarCheck</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>loginCheck</servlet-name>
   	<url-pattern>/loginCheck</url-pattern>
@@ -33,5 +39,9 @@
   <servlet-mapping>
   	<servlet-name>LoginChecking</servlet-name>
   	<url-pattern>/LoginChecking</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CarCheck</servlet-name>
+  	<url-pattern>/CarCheck</url-pattern>
   </servlet-mapping>
 </web-app>

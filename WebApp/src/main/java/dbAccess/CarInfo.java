@@ -1,29 +1,29 @@
 package dbAccess;
 
 import java.sql.Time;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class CarInfo {
 	private static String carNumber;
 	private static String parkAddress;
-	private static Date day;
-	private static Time startTime;
-	private static Time endTime;
-	private boolean handicapPermit; 
-	private boolean handicappedSpot;
+	private static String day;
+	private static Date startTime;
+	private static Date endTime;
+	private static boolean handicapPermit; 
+	private static boolean handicappedSpot;
 	private static double paidFee; 
-	private int timeParked;
-	private double owedFee;
-	private boolean parked_illegally;
+	private static boolean parkedIllegally;
 	
-	public CarInfo(String myCarNum, String myAdd, Date myDay, Time myStart, Time myEnd, boolean myHandPermit, boolean isHandicapped, double myFee) {
+	public CarInfo(String myCarNum, String myAdd, String myDay, Date myStart, Date myEnd, boolean myHandPermit, boolean isHandicapped, double myFee) {
 		this.carNumber = myCarNum;
 		this.parkAddress = myAdd;
 		this.day = myDay;
 		this.startTime = myStart;
 		this.endTime = myEnd;
 		this.handicapPermit = myHandPermit;
-		if (handicapPermit == true) {
+		if (handicapPermit == true && isHandicapped == true) {
 			this.handicappedSpot = true;
 		}
 		else this.handicappedSpot = false;
@@ -46,15 +46,15 @@ public class CarInfo {
 		CarInfo.parkAddress = parkAddress;
 	}
 
-	public static Date getDay() {
+	public static String getDay() {
 		return day;
 	}
 
-	public static void setDay(Date day) {
+	public static void setDay(String day) {
 		CarInfo.day = day;
 	}
 
-	public static Time getStartTime() {
+	public static Date getStartTime() {
 		return startTime;
 	}
 
@@ -62,7 +62,7 @@ public class CarInfo {
 		CarInfo.startTime = startTime;
 	}
 
-	public static Time getEndTime() {
+	public static Date getEndTime() {
 		return endTime;
 	}
 
@@ -70,7 +70,7 @@ public class CarInfo {
 		CarInfo.endTime = endTime;
 	}
 
-	public boolean isHandicapPermit() {
+	public static boolean getIsHandicapPermit() {
 		return handicapPermit;
 	}
 
@@ -78,7 +78,7 @@ public class CarInfo {
 		this.handicapPermit = handicapPermit;
 	}
 
-	public boolean isHandicappedSpot() {
+	public static boolean getIsHandicappedSpot() {
 		return handicappedSpot;
 	}
 
@@ -94,5 +94,37 @@ public class CarInfo {
 		CarInfo.paidFee = paidFee;
 	}
 	
+	public static Boolean checkFeesPaid() {
+		if (getPaidFee() >= getTimeDiff() * 1.5) {
+			return true;
+		} else {
+			//parkedIllegally = true;
+			return false;
+		}
+	}
 	
+	public static long getTimeDiff() {
+		long diff = endTime.getTime() - startTime.getTime();
+		long diffMinutes = diff / (60 * 1000);         
+		long diffHours = diff / (60 * 60 * 1000); 
+		return diffHours;
+	}
+	
+	public static Boolean checkTimeLimit() throws ParseException {
+		SimpleDateFormat parser = new SimpleDateFormat("HH:MM");
+		Date nine = parser.parse("09:00");
+		Date five = parser.parse("17:00");
+		long beforeNine = startTime.getTime() - nine.getTime();
+		long afterFive = five.getTime() - endTime.getTime();
+		
+		if ((beforeNine < 0 || afterFive < 0) && (!getDay().equals("Saturday") || !getDay().equals("Sunday"))) {
+			//parkedIllegally = true;
+			System.out.println(beforeNine);
+			System.out.println(afterFive);
+			System.out.println(!getDay().equals("Saturday"));
+			System.out.println(!getDay().equals("Sunday"));
+			return false;
+		}
+		else return true;
+	}
 }
