@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h2>Error!</h2>
-	<h3>Please enter the correct username and password</h3>
-	<a href="Login.jsp"><b>Back</b></a>
+	<h3>Please enter the correct username and password.</h3>
+	<a href="Login.jsp"><b>Go Back</b></a>
 </body>
 </html>

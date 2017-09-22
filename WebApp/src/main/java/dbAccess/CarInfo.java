@@ -98,27 +98,25 @@ public class CarInfo {
 		if (getPaidFee() >= getTimeDiff() * 1.5) {
 			return true;
 		} else {
-			//parkedIllegally = true;
 			return false;
 		}
 	}
 	
-	public static long getTimeDiff() {
-		long diff = endTime.getTime() - startTime.getTime();
-		long diffMinutes = diff / (60 * 1000);         
-		long diffHours = diff / (60 * 60 * 1000); 
+	public static double getTimeDiff() {
+		double diff = endTime.getTime() - startTime.getTime();
+		double diffMinutes = diff / (60 * 1000);         
+		double diffHours = diff / (60 * 60 * 1000); 
 		return diffHours;
 	}
 	
 	public static Boolean checkTimeLimit() throws ParseException {
-		SimpleDateFormat parser = new SimpleDateFormat("HH:MM");
+		SimpleDateFormat parser = new SimpleDateFormat("HH:mm");
 		Date nine = parser.parse("09:00");
 		Date five = parser.parse("17:00");
 		long beforeNine = startTime.getTime() - nine.getTime();
 		long afterFive = five.getTime() - endTime.getTime();
 		
 		if ((beforeNine < 0 || afterFive < 0) && (!getDay().equals("Saturday") || !getDay().equals("Sunday"))) {
-			//parkedIllegally = true;
 			System.out.println(beforeNine);
 			System.out.println(afterFive);
 			System.out.println(!getDay().equals("Saturday"));

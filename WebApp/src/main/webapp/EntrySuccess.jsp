@@ -14,6 +14,6 @@
 		You have entered your data!<br/><br/>
     <%}
 %>
-<a href="Entry.jsp">Back to enter more stuff</a>
+<a href="Entry.jsp">Enter another entry</a>
 </body>
 </html>

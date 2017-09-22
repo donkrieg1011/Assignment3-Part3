@@ -31,7 +31,7 @@ public class CarConnection {
 			myStmt.setString(1, CarInfo.getCarNumber());
 			myStmt.setString(2, CarInfo.getParkAddress());
 			myStmt.setString(3, CarInfo.getDay());
-			myStmt.setLong(4, CarInfo.getTimeDiff());
+			myStmt.setDouble(4, CarInfo.getTimeDiff());
 			myStmt.setBoolean(5, CarInfo.getIsHandicapPermit());
 			myStmt.setBoolean(6, CarInfo.getIsHandicappedSpot());
 			myStmt.setDouble(7, CarInfo.getPaidFee());

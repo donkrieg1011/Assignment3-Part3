@@ -39,7 +39,7 @@
 <%
 	if((Integer)request.getAttribute("rippedOff") == 1)
 	{%>
-		You don't have to pay on Saturday!<br/><br/>
+		You don't have to pay on Saturday and Sunday!<br/><br/>
 	<%}
 %>
 <%
@@ -48,6 +48,12 @@
 		You haven't paid enough money yet!<br/><br/>
 	<%}
 %>
-<a href="Entry.jsp">Back to try again</a>
+<%
+	if((Integer)request.getAttribute("overpaid") == 1)
+	{%>
+		You paid too much!<br/><br/>
+	<%}
+%>
+<a href="Entry.jsp">Try Again</a>
 </body>
 </html>
