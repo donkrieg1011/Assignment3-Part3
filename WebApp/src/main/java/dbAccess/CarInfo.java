@@ -14,7 +14,6 @@ public class CarInfo {
 	private static boolean handicapPermit; 
 	private static boolean handicappedSpot;
 	private static double paidFee; 
-	private static boolean parkedIllegally;
 	
 	public CarInfo(String myCarNum, String myAdd, String myDay, Date myStart, Date myEnd, boolean myHandPermit, boolean isHandicapped, double myFee) {
 		this.carNumber = myCarNum;
